@@ -1,4 +1,4 @@
-package io.github.roadmapper.docker.instruction;
+package com.github.roadmapper.docker.instruction;
 
 public class Arg extends Instruction {
 

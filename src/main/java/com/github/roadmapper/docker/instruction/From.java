@@ -1,11 +1,11 @@
-package io.github.roadmapper.docker.instruction;
+package com.github.roadmapper.docker.instruction;
 
 import java.util.Locale;
 
 public class From extends Instruction {
 	
 	private String name = From.class.getSimpleName().toUpperCase(Locale.ENGLISH);
-	private String image;
+	private String repository;
 	private String tag;
 	private String digest;
 	
@@ -13,11 +13,11 @@ public class From extends Instruction {
 		this(image, null, null);
 	}
 	
-	public From(String image, String tag) {
-		this(image, tag, null);
+	public From(String repository, String tag) {
+		this(repository, tag, null);
 	}
-	public From(String image, String tag, String digest) {
-		this.image = image;
+	public From(String repository, String tag, String digest) {
+		this.repository = repository;
 		this.tag = tag;
 		this.digest = digest;
 	}
@@ -27,12 +27,12 @@ public class From extends Instruction {
 		return name;
 	}
 
-	public String getImage() {
-		return image;
+	public String getRepository() {
+		return repository;
 	}
 
-	public void setImage(String image) {
-		this.image = image;
+	public void setRepository(String repository) {
+		this.repository = repository;
 	}
 
 	public String getTag() {
@@ -50,16 +50,20 @@ public class From extends Instruction {
 	public void setDigest(String digest) {
 		this.digest = digest;
 	}
+	
+	public String getImage() {
+		if (tag != null && digest == null) {
+			return repository + ":" + tag;
+		} else {
+			return repository + "@" + digest;
+		}
+	}
 
 	@Override
 	public String getInstruction() {
 		StringBuilder sb = new StringBuilder();
-		sb.append(name).append(" ").append(image);
-		if (tag != null && digest == null) {
-			sb.append(":").append(tag);
-		} else if (tag == null && digest != null) {
-			sb.append("@").append(digest);
-		}
+		sb.append(name).append(" ");
+		sb.append(getImage());
 		return sb.toString();
 	}
 }

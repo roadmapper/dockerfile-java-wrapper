@@ -1,4 +1,4 @@
-package io.github.roadmapper.docker.instruction;
+package com.github.roadmapper.docker.instruction;
 
 import java.util.Arrays;
 import java.util.List;
