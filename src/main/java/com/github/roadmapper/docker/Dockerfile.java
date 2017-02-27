@@ -3,7 +3,6 @@ package com.github.roadmapper.docker;
 import java.lang.annotation.Annotation;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import com.github.roadmapper.docker.instruction.From;
 import com.github.roadmapper.docker.instruction.Instruction;
@@ -161,22 +160,22 @@ public class Dockerfile {
 	 * Output the Dockerfile in the order that the instructions were added into
 	 * it.
 	 * 
-	 * @return a {@link String} of all of the Dockerfile instructions
+	 * @return a {@link List} of {@link String}s of all of the Dockerfile instructions
 	 * @throws Exception
 	 *             if the base image is null
 	 */
-	public String outputDockerfile() throws Exception {
-		StringBuilder sb = new StringBuilder();
+	public List<String> outputDockerfile() throws Exception {
+		List<String> lines = new ArrayList<>();
 		if (platform == Platform.WINDOWS) {
-			sb.append("# escape=`\n\n");
+			lines.add("# escape=`");
+			lines.add("");
 		}
 		if (baseImage == null) {
 			throw new Exception("Missing base image for Dockerfile");
 		}
-		sb.append(baseImage.getInstruction()).append("\n");
-		sb.append(instructions.stream().map(instruction -> instruction.getInstruction())
-				.collect(Collectors.joining("\n")));
-		return sb.toString();
+		lines.add(baseImage.getInstruction());
+		instructions.stream().map(instruction -> instruction.getInstruction()).forEach(lines::add);
+		return lines;
 	}
 
 	/**

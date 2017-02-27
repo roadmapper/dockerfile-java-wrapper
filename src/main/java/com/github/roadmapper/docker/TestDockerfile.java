@@ -13,23 +13,26 @@ import com.github.roadmapper.docker.instruction.Run;
 
 public class TestDockerfile {
 	public static void main(String[] args) {
-		Dockerfile f = new Dockerfile("1.11.1", Dockerfile.Platform.WINDOWS, new From("centos", "6.8"));
-		f.addInstruction(new Run(null, true, "yum -y install epel-release", "yum -y install git python", "pip install boto"));		
-		f.addInstruction(new Add("lol.txt", "/tmp"));		
-		f.addInstruction(new Copy("lol.txt", "/tmp"));		
-		f.addInstruction(new Expose(8080, 8000));		
-		f.addInstruction(new Entrypoint(CommandType.EXEC, "tail", "-f", "lol.txt"));
-		f.addInstruction(new OnBuild(new Run(null, true, "yum -y install epel-release", "yum -y install git python", "pip install boto")));
-		f.addInstruction(new HealthCheck(null, null, null, new Cmd("ls", "-la")));
-		
-		System.out.println(f.getBaseImage());
+		Dockerfile df = new Dockerfile("1.11.1", Dockerfile.Platform.LINUX, new From("centos", "6.8"));
+		df.addInstruction(
+				new Run(null, true, "yum -y install epel-release", "yum -y install git python", "pip install boto"));
+		df.addInstruction(new Add("lol.txt", "/tmp"));
+		df.addInstruction(new Copy("lol.txt", "/tmp"));
+		df.addInstruction(new Expose(8080, 8000));
+		df.addInstruction(new Entrypoint(CommandType.EXEC, "tail", "-f", "lol.txt"));
+		df.addInstruction(new OnBuild(
+				new Run(null, true, "yum -y install epel-release", "yum -y install git python", "pip install boto")));
+		df.addInstruction(new HealthCheck(null, null, null, new Cmd("ls", "-la")));
+
+		System.out.println(df.getBaseImage());
 
 		try {
-			System.out.println(f.outputDockerfile());
+			df.outputDockerfile().forEach(System.out::println);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
 	}
 
 }

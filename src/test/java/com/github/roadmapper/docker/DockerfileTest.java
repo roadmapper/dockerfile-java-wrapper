@@ -2,6 +2,7 @@ package com.github.roadmapper.docker;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -68,11 +69,11 @@ public class DockerfileTest {
 		HealthCheck healthCheck = new HealthCheck(null, null, null, healthCheckCommand);
 		linuxDockerfile.addInstruction(healthCheck);
 
-		StringBuilder output = new StringBuilder();
-		output.append(baseImageLinux.getInstruction()).append("\n");
-		output.append(run.getInstruction());
+		List<String> output = new ArrayList<>();
+		output.add(baseImageLinux.getInstruction());
+		output.add(run.getInstruction());
 
-		assertEquals(output.toString(), linuxDockerfile.outputDockerfile());
+		assertEquals(output, linuxDockerfile.outputDockerfile());
 	}
 
 	@Test
@@ -84,12 +85,19 @@ public class DockerfileTest {
 		Run run = new Run("dir");
 		windowsDockerfile.addInstruction(run);
 
-		StringBuilder output = new StringBuilder();
-		output.append("# escape=`\n\n");
-		output.append(baseImageWindows.getInstruction()).append("\n");
-		output.append(shell.getInstruction()).append("\n");
-		output.append(run.getInstruction());
+		List<String> output = new ArrayList<>();
+		output.add("# escape=`");
+		output.add("");
+		output.add(baseImageWindows.getInstruction());
+		output.add(shell.getInstruction());
+		output.add(run.getInstruction());
 		
-		assertEquals(output.toString(), windowsDockerfile.outputDockerfile());
+		output.forEach(System.out::println);
+		System.out.println("wat");
+		
+		windowsDockerfile.outputDockerfile().forEach(System.out::println);
+		System.out.println("lol");
+		
+		assertEquals(output, windowsDockerfile.outputDockerfile());
 	}
 }

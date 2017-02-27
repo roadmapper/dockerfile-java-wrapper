@@ -54,8 +54,10 @@ public class From extends Instruction {
 	public String getImage() {
 		if (tag != null && digest == null) {
 			return repository + ":" + tag;
-		} else {
+		} else if (tag == null && digest != null) {
 			return repository + "@" + digest;
+		} else {
+			return repository;
 		}
 	}
 
