@@ -92,12 +92,6 @@ public class DockerfileTest {
 		output.add(shell.getInstruction());
 		output.add(run.getInstruction());
 		
-		output.forEach(System.out::println);
-		System.out.println("wat");
-		
-		windowsDockerfile.outputDockerfile().forEach(System.out::println);
-		System.out.println("lol");
-		
 		assertEquals(output, windowsDockerfile.outputDockerfile());
 	}
 }
