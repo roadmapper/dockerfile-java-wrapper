@@ -2,18 +2,25 @@ Dockerfile Java Wrapper
 =============================
 
 [![Build Status](https://travis-ci.org/roadmapper/dockerfile-java-wrapper.svg?branch=master)](https://travis-ci.org/roadmapper/dockerfile-java-wrapper)
+[![](https://jitpack.io/v/roadmapper/dockerfile-java-wrapper.svg)](https://jitpack.io/#roadmapper/dockerfile-java-wrapper)
 
 A simple Java wrapper for building a Dockerfile.
 
 ### About
-The idea behind this was to be able to create a Docker image context programmatically with something like Spotify's Docker client for Java.
+This library allows you to create a Docker image context programmatically and buildl the Docker image with something like Spotify's [Docker client for Java](https://github.com/spotify/docker-client).
 
 ### Download
 ```xml
+<repositories>
+  <repository>
+    <id>jitpack.io</id>
+    <url>https://jitpack.io</url>
+  </repository>
+</repositories>
 <dependency>
-    <groupId>com.github.roadmapper</groupId>
-    <artifactId>dockerfile-wrapper</artifactId>
-    <version>0.1.0</version>
+  <groupId>com.github.roadmapper</groupId>
+  <artifactId>dockerfile-wrapper</artifactId>
+  <version>0.1.0</version>
 </dependency>
 ```
 
