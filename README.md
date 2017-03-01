@@ -7,7 +7,7 @@ Dockerfile Java Wrapper
 A simple Java wrapper for building a Dockerfile.
 
 ### About
-This library allows you to create a Docker image context programmatically and buildl the Docker image with something like Spotify's [Docker client for Java](https://github.com/spotify/docker-client).
+This library allows you to create a Docker image context programmatically and build the Docker image with something like Spotify's [Docker client for Java](https://github.com/spotify/docker-client).
 
 ### Download
 ```xml
