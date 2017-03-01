@@ -6,7 +6,7 @@ import java.util.Locale;
  * From instruction.
  * 
  * @author Vinay Dandekar
- * @see <a href="https://docs.docker.com/engine/reference/builder/#/from"> FROM
+ * @see <a href="https://docs.docker.com/engine/reference/builder/#/from">FROM
  *      </a>
  */
 public class From extends Instruction {

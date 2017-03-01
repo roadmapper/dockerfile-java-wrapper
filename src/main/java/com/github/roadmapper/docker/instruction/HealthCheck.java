@@ -8,7 +8,8 @@ import com.github.roadmapper.docker.DockerVersion;
  * Healthcheck instruction. Requires Docker 1.12 or above.
  * 
  * @author Vinay Dandekar
- * @see <a href="https://docs.docker.com/engine/reference/builder/#/healthcheck">
+ * @see <a href=
+ *      "https://docs.docker.com/engine/reference/builder/#/healthcheck">
  *      HEALTHCHECK</a>
  */
 @DockerVersion("1.12.0")
