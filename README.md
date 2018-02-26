@@ -37,7 +37,7 @@ try {
 }
 ```
 
-####Pairing this with Spotify's client:
+#### Pairing this with Spotify's client:
 ```java
 Dockerfile df = new Dockerfile("1.13.1", Dockerfile.Platform.LINUX, new From("centos", "6.8"));
 df.addInstruction(new Run(null, true, "yum -y install epel-release", 
